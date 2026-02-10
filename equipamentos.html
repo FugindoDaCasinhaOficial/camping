@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* =========================================
-           VARIÁVEIS (Identidade Visual)
-           ========================================= */
         :root {
             --color-primary: #2E7D32;
             --color-accent: #FF6D00;
@@ -27,7 +24,6 @@
             font-family: 'Open Sans', sans-serif;
             color: var(--color-text);
             min-height: 100vh;
-            /* Fundo diferente ou o mesmo do index */
             background: url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             position: relative;
             padding: 2rem 1rem;
@@ -37,12 +33,12 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.75); /* Fundo escuro para destacar os produtos */
+            background: rgba(0,0,0,0.75);
             z-index: -1;
         }
 
         .container {
-            max-width: 1000px; /* Mais largo para caber 3 colunas */
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -54,7 +50,7 @@
         
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
             color: #fff;
         }
@@ -66,7 +62,6 @@
             margin: 0 auto;
         }
 
-        /* Botão Voltar */
         .btn-back {
             display: inline-flex;
             align-items: center;
@@ -79,7 +74,7 @@
         }
         .btn-back:hover { opacity: 1; transform: translateX(-5px); }
 
-        /* --- SEÇÕES DE CATEGORIA --- */
+        /* --- SEÇÕES --- */
         .category-title {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
@@ -93,42 +88,49 @@
         
         .category-title i { margin-right: 10px; }
 
-        /* --- GRID DE PRODUTOS --- */
+        /* --- GRID E CARD (MELHORADO) --- */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo Automático */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
-        /* --- CARD DO PRODUTO --- */
+        /* O link agora envolve o card todo */
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
         .product-card {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             border: 1px solid var(--glass-border);
             border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.4);
+        .product-link:hover .product-card {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: var(--color-accent);
         }
 
-        /* Imagem do Produto */
         .img-container {
             width: 100%;
             height: 200px;
-            background: white; /* Fundo branco para produto recortado */
+            background: white;
+            padding: 1rem;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
-            position: relative;
         }
 
         .product-img {
@@ -137,7 +139,6 @@
             object-fit: contain;
         }
 
-        /* Selo "Nós Usamos" */
         .badge-approved {
             position: absolute;
             top: 10px;
@@ -148,13 +149,12 @@
             font-weight: bold;
             padding: 4px 10px;
             border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 2;
         }
 
-        /* Conteúdo do Card */
         .card-content {
             padding: 1.5rem;
-            flex-grow: 1; /* Empurra o botão para o final */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
@@ -164,7 +164,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            line-height: 1.4;
+            color: #fff;
         }
 
         .product-desc {
@@ -172,27 +172,24 @@
             color: #ccc;
             margin-bottom: 1.5rem;
             flex-grow: 1;
+            line-height: 1.5;
         }
 
-        /* Botão Comprar */
-        .btn-buy {
+        .btn-fake {
             display: block;
             width: 100%;
             padding: 0.8rem;
-            background: var(--color-accent); /* Laranja Decathlon */
+            background: var(--color-accent);
             color: white;
             text-align: center;
-            text-decoration: none;
             font-weight: 700;
             border-radius: 8px;
-            transition: background 0.2s;
+            transition: background 0.3s;
         }
 
-        .btn-buy:hover {
+        .product-link:hover .btn-fake {
             background: #e65100;
         }
-        
-        .btn-buy i { margin-right: 5px; }
 
     </style>
 </head>
@@ -201,13 +198,13 @@
     <div class="container">
         
         <a href="index.html" class="btn-back">
-            <i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Voltar para Bio
+            <i class="fa-solid fa-arrow-left"></i> Voltar para Bio
         </a>
 
         <header>
             <h1>O Que Levamos na Mochila? 🎒</h1>
             <p class="subtitle">
-                Separamos aqui apenas os equipamentos que nós usamos, testamos e confiamos nas nossas viagens. Links seguros da Decathlon.
+                Equipamentos que usamos e aprovamos. Clique no produto para ver detalhes no site do fornecedor.
             </p>
         </header>
 
@@ -217,33 +214,33 @@
 
         <div class="product-grid">
             
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-approved"><i class="fa-solid fa-check"></i> Aprovado</span>
-                    <img src="https://contents.mediadecathlon.com/p1764639/k$9e53b2111004123c5240217277764831/barraca-de-camping-arpenaz-41-4-pessoas-1-quarto-quechua.jpg?format=auto&quality=40&f=800x0" alt="Barraca Quechua" class="product-img">
-                </div>
-                <div class="card-content">
-                    <h3 class="product-name">Barraca Quechua Arpenaz 4.1</h3>
-                    <p class="product-desc">A nossa casa principal. Tem sala para ficar em pé e quarto escuro (Fresh & Black). Aguenta chuva forte!</p>
-                    <a href="SEU_LINK_AFILIADO_AQUI" target="_blank" class="btn-buy">
-                        <i class="fa-solid fa-cart-shopping"></i> Ver Preço
-                    </a>
-                </div>
-            </div>
+            <a href="https://www.decathlon.com.br/SEU_LINK_AQUI" target="_blank" class="product-link">
+                <article class="product-card">
+                    <div class="img-container">
+                        <span class="badge-approved"><i class="fa-solid fa-check"></i> Aprovado</span>
+                        <img src="https://contents.mediadecathlon.com/p1764639/k$9e53b2111004123c5240217277764831/barraca-de-camping-arpenaz-41-4-pessoas-1-quarto-quechua.jpg?format=auto&quality=40&f=800x0" alt="Barraca Quechua" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Barraca Quechua Arpenaz 4.1</h3>
+                        <p class="product-desc">Nossa "casa" oficial. Possui sala para ficar em pé e tecnologia Fresh & Black para dormir no escuro.</p>
+                        <div class="btn-fake"><i class="fa-solid fa-cart-shopping"></i> Ver no Site</div>
+                    </div>
+                </article>
+            </a>
 
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-approved"><i class="fa-solid fa-check"></i> Conforto</span>
-                    <img src="https://contents.mediadecathlon.com/p1749721/k$e8e4531a78913386663523730043815e/colchao-inflavel-de-camping-air-basic-casal-120-cm-quechua.jpg?format=auto&quality=40&f=800x0" alt="Colchão Inflável" class="product-img">
-                </div>
-                <div class="card-content">
-                    <h3 class="product-name">Colchão Quechua Air Basic</h3>
-                    <p class="product-desc">Essencial para não dormir no chão duro. Usamos o modelo de casal (120cm).</p>
-                    <a href="SEU_LINK_AFILIADO_AQUI" target="_blank" class="btn-buy">
-                        <i class="fa-solid fa-cart-shopping"></i> Ver Preço
-                    </a>
-                </div>
-            </div>
+            <a href="https://www.decathlon.com.br/SEU_LINK_AQUI" target="_blank" class="product-link">
+                <article class="product-card">
+                    <div class="img-container">
+                        <span class="badge-approved"><i class="fa-solid fa-check"></i> Conforto</span>
+                        <img src="https://contents.mediadecathlon.com/p1749721/k$e8e4531a78913386663523730043815e/colchao-inflavel-de-camping-air-basic-casal-120-cm-quechua.jpg?format=auto&quality=40&f=800x0" alt="Colchão Inflável" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Colchão Quechua Air Basic</h3>
+                        <p class="product-desc">O segredo de acordar sem dor nas costas. Resistente e muito fácil de inflar.</p>
+                        <div class="btn-fake"><i class="fa-solid fa-cart-shopping"></i> Ver no Site</div>
+                    </div>
+                </article>
+            </a>
 
         </div>
 
@@ -253,33 +250,33 @@
 
         <div class="product-grid">
             
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-approved"><i class="fa-solid fa-check"></i> Indispensável</span>
-                    <img src="https://contents.mediadecathlon.com/p2169542/k$61765c7170884841a1205c0406859664/fogareiro-a-gas-de-camping-1-boca-bistro-3-campingaz.jpg?format=auto&quality=40&f=800x0" alt="Fogareiro" class="product-img">
-                </div>
-                <div class="card-content">
-                    <h3 class="product-name">Fogareiro Bistro Campingaz</h3>
-                    <p class="product-desc">Prático e seguro. A maleta facilita muito o transporte. Ferve água rapidinho.</p>
-                    <a href="SEU_LINK_AFILIADO_AQUI" target="_blank" class="btn-buy">
-                        <i class="fa-solid fa-cart-shopping"></i> Ver Preço
-                    </a>
-                </div>
-            </div>
+            <a href="https://www.decathlon.com.br/SEU_LINK_AQUI" target="_blank" class="product-link">
+                <article class="product-card">
+                    <div class="img-container">
+                        <span class="badge-approved"><i class="fa-solid fa-check"></i> Indispensável</span>
+                        <img src="https://contents.mediadecathlon.com/p2169542/k$61765c7170884841a1205c0406859664/fogareiro-a-gas-de-camping-1-boca-bistro-3-campingaz.jpg?format=auto&quality=40&f=800x0" alt="Fogareiro" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Fogareiro Bistro Campingaz</h3>
+                        <p class="product-desc">Seguro e estável. Ideal para quem não abre mão de um café quente ou uma refeição completa.</p>
+                        <div class="btn-fake"><i class="fa-solid fa-cart-shopping"></i> Ver no Site</div>
+                    </div>
+                </article>
+            </a>
             
-             <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-approved"><i class="fa-solid fa-check"></i> Top</span>
-                    <img src="https://contents.mediadecathlon.com/p1988965/k$d59f796d11e59265f2425a1e2f69466c/conjunto-de-panelas-inox-antiaderente-mh500-2-pessoas-1-6-litros-quechua.jpg?format=auto&quality=40&f=800x0" alt="Kit Panelas" class="product-img">
-                </div>
-                <div class="card-content">
-                    <h3 class="product-name">Kit Panelas MH500 (2 Pessoas)</h3>
-                    <p class="product-desc">Compacto, encaixa tudo um dentro do outro. Antiaderente de verdade.</p>
-                    <a href="SEU_LINK_AFILIADO_AQUI" target="_blank" class="btn-buy">
-                        <i class="fa-solid fa-cart-shopping"></i> Ver Preço
-                    </a>
-                </div>
-            </div>
+             <a href="https://www.decathlon.com.br/SEU_LINK_AQUI" target="_blank" class="product-link">
+                <article class="product-card">
+                    <div class="img-container">
+                        <span class="badge-approved"><i class="fa-solid fa-check"></i> Top</span>
+                        <img src="https://contents.mediadecathlon.com/p1988965/k$d59f796d11e59265f2425a1e2f69466c/conjunto-de-panelas-inox-antiaderente-mh500-2-pessoas-1-6-litros-quechua.jpg?format=auto&quality=40&f=800x0" alt="Kit Panelas" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Kit Panelas MH500</h3>
+                        <p class="product-desc">Tudo o que você precisa em um único kit compacto de aço inox antiaderente.</p>
+                        <div class="btn-fake"><i class="fa-solid fa-cart-shopping"></i> Ver no Site</div>
+                    </div>
+                </article>
+            </a>
 
         </div>
 
