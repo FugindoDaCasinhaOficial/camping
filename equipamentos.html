@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipamentos | Fugindo da Casinha</title>
+    <title>Equipamentos Completos | Fugindo da Casinha</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,35 +32,67 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: -1;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* NAVEGAÇÃO E BOTÃO VOLTAR */
+        .nav-header {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .btn-back {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-back:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateX(-5px);
+        }
 
         header { text-align: center; margin-bottom: 3rem; }
-        
-        h1 {
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #ccc; }
+
+        /* CATEGORIAS */
+        .category-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            margin: 4rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
         }
 
-        .subtitle { color: #ccc; margin-bottom: 2rem; }
-
-        /* --- GRID E ANIMAÇÃO --- */
+        /* GRID E CARDS */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            padding: 1rem;
+            padding: 1rem 0;
         }
 
-        .product-link {
-            text-decoration: none;
-            color: inherit;
-            perspective: 1000px; /* Efeito 3D */
-        }
+        .product-link { text-decoration: none; color: inherit; display: block; height: 100%; }
 
         .product-card {
             background: var(--glass-bg);
@@ -75,57 +107,45 @@
             position: relative;
         }
 
-        /* EFEITO PULAR PRA FRENTE */
         .product-link:hover .product-card {
-            transform: scale(1.08) translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform: translateY(-10px);
             border-color: var(--color-accent);
-            z-index: 10;
             background: rgba(255, 255, 255, 0.18);
         }
 
-        /* CONTAINER DA FOTO COM FUNDO BRANCO */
         .img-container {
             width: 100%;
             height: 220px;
-            background: #ffffff; /* Fundo branco para destacar o produto */
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            border-bottom: 3px solid var(--color-accent);
+            padding: 15px;
         }
 
-        .product-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-
-        .product-link:hover .product-img {
-            transform: scale(1.1);
-        }
+        .product-img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .card-content {
             padding: 1.5rem;
             text-align: center;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
             color: #fff;
+            min-height: 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .product-desc {
-            font-size: 0.9rem;
-            color: #ddd;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
+        .product-desc { font-size: 0.85rem; color: #ccc; margin-bottom: 1.5rem; line-height: 1.5; font-style: italic; }
 
         .btn-action {
             background: var(--color-accent);
@@ -134,25 +154,8 @@
             border-radius: 50px;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .product-link:hover .btn-action {
-            background: #fff;
-            color: var(--color-accent);
-            transform: translateY(-2px);
-        }
-
-        .category-title {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--color-accent);
-            font-size: 1.5rem;
-            margin: 3rem 0 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.75rem;
+            align-self: center;
         }
 
         .badge {
@@ -162,68 +165,185 @@
             background: var(--color-primary);
             padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: bold;
             z-index: 5;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <div class="nav-header">
+            <button onclick="history.back()" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Voltar Página
+            </button>
+        </div>
+
         <header>
-            <h1>O Que Levamos na Mochila? 🎒</h1>
-            <p class="subtitle">Clique nos itens para ver detalhes e preços nos nossos fornecedores parceiros.</p>
+            <h1>Checklist de Equipamentos 🎒</h1>
+            <p class="subtitle">Tudo o que usamos em nossas jornadas, do conforto à sobrevivência.</p>
         </header>
 
         <div class="category-title">
-            <i class="fa-solid fa-utensils"></i> Cozinha de Camping
+            <i class="fa-solid fa-tent"></i> Dormitório e Abrigo
+        </div>
+        <div class="product-grid">
+            <a href="https://www.decathlon.com.br/barraca-de-camping-4-1-fresh-black-arpenaz-preto-8731616-quechua/p" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Conforto</span>
+                    <div class="img-container">
+                        <img src="https://contents.mediadecathlon.com/p2313620/k$089e92d83f9828236f0144d186259f93/barraca-de-camping-com-varetas-arpenaz-41-f-b-4-pessoas-1-quarto.jpg" alt="Barraca" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Barraca Quechua 4.1 Fresh & Black</h3>
+                        <p class="product-desc">"Excelente ventilação e isolamento de luz. Essencial para dormir até mais tarde."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="https://www.decathlon.com.br/colchao-de-camping-air-comfort-casal-8648443-quechua/p" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Premium</span>
+                    <div class="img-container">
+                        <img src="https://contents.mediadecathlon.com/p2113337/k$98e3b5e480e6093d5f99f35905d454a8/colchao-de-camping-inflavel-air-comfort-140-cm-2-pessoas.jpg" alt="Colchão" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Colchão Inflável Air Comfort Casal</h3>
+                        <p class="product-desc">"Toque aveludado e estrutura que não deforma. O melhor para as costas."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
         </div>
 
+        <div class="category-title">
+            <i class="fa-solid fa-utensils"></i> Cozinha e Refeição
+        </div>
         <div class="product-grid">
-            
-            <a href="COLOQUE_SEU_LINK_AQUI" target="_blank" class="product-link">
+            <a href="https://www.decathlon.com.br/mesa-de-camping-dobravel-para-4-pessoas-8750560-quechua/p" target="_blank" class="product-link">
                 <article class="product-card">
-                    <span class="badge">PRATICIDADE</span>
+                    <span class="badge">Prático</span>
                     <div class="img-container">
-                        <img src="https://contents.mediadecathlon.com/p2154511/k$e8654876b66e8550186595561a35970c/kit-de-talheres-de-trekking-em-aco-inoxidavel-quechua.jpg" alt="Kit Talheres" class="product-img">
+                        <img src="https://contents.mediadecathlon.com/p2312214/k$a4c680214a1e9444458f40775d714979/mesa-de-camping-dobravel-para-4-pessoas.jpg" alt="Mesa" class="product-img">
                     </div>
                     <div class="card-content">
-                        <h3 class="product-name">Kit Utensílios de Cozinha</h3>
-                        <p class="product-desc">Compacto, leve e com tudo que você precisa para suas refeições ao ar livre.</p>
-                        <div class="btn-action">Ver no Site</div>
+                        <h3 class="product-name">Mesa de Camping para 4 Pessoas</h3>
+                        <p class="product-desc">"Vira uma maleta fácil de carregar. Altura ideal para as refeições."</p>
+                        <div class="btn-action">Ver Produto</div>
                     </div>
                 </article>
             </a>
 
-            <a href="COLOQUE_SEU_LINK_AQUI" target="_blank" class="product-link">
+            <a href="https://www.decathlon.com.br/cadeira-dobravel-camping-xl-com-apoio-de-bracos-8852993-quechua/p" target="_blank" class="product-link">
                 <article class="product-card">
-                    <span class="badge">MAIS VENDIDO</span>
+                    <span class="badge">Conforto XL</span>
                     <div class="img-container">
-                        <img src="https://contents.mediadecathlon.com/p2169542/k$61765c7170884841a1205c0406859664/fogareiro-a-gas-de-camping-1-boca-bistro-3-campingaz.jpg" alt="Fogareiro" class="product-img">
+                        <img src="https://contents.mediadecathlon.com/p2543952/k$59600a9499878198f79619623838276f/cadeira-de-camping-dobravel-xl-conforto-com-apoio-de-bracos.jpg" alt="Cadeira" class="product-img">
                     </div>
                     <div class="card-content">
-                        <h3 class="product-name">Fogareiro Bistro 3</h3>
-                        <p class="product-desc">Segurança e potência para cozinhar em qualquer lugar com facilidade.</p>
-                        <div class="btn-action">Ver no Site</div>
+                        <h3 class="product-name">Cadeira Dobrável XL Quechua</h3>
+                        <p class="product-desc">"Suporta bem o peso e os braços ajudam muito no relaxamento."</p>
+                        <div class="btn-action">Ver Produto</div>
                     </div>
                 </article>
             </a>
 
-            <a href="COLOQUE_SEU_LINK_AQUI" target="_blank" class="product-link">
+            <a href="https://www.mercadolivre.com.br/banco-camping-tripe-dobravel-arpenaz-quechua/p/MLB33536997" target="_blank" class="product-link">
                 <article class="product-card">
-                    <span class="badge">PREMIUM</span>
+                    <span class="badge">Ultra-Leve</span>
                     <div class="img-container">
-                        <img src="https://contents.mediadecathlon.com/p1988965/k$d59f796d11e59265f2425a1e2f69466c/conjunto-de-panelas-inox-antiaderente-mh500-2-pessoas-1-6-litros-quechua.jpg" alt="Kit Panelas" class="product-img">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_667475-MLU74635532588_022024-O.webp" alt="Banco Tripé" class="product-img">
                     </div>
                     <div class="card-content">
-                        <h3 class="product-name">Conjunto Panelas Inox</h3>
-                        <p class="product-desc">Antiaderente de alta qualidade que economiza espaço na mochila.</p>
-                        <div class="btn-action">Ver no Site</div>
+                        <h3 class="product-name">Banco Camping Tripé Arpenaz</h3>
+                        <p class="product-desc">"Cabe em qualquer fresta do carro e salva na hora de cozinhar ou pescar."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
+        </div>
+
+        <div class="category-title">
+            <i class="fa-solid fa-bolt"></i> Utilitários e Elétrica
+        </div>
+        <div class="product-grid">
+            <a href="https://support.decathlon.pt/itiwit-bomba-eletrica-0-20-psi-13-8v-10a-tomada-12v-para-stand-up-paddle-e-caiaque" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Essencial</span>
+                    <div class="img-container">
+                        <img src="https://contents.mediadecathlon.com/p1487841/k$5355a29f8a3d135d070629633c77174e/bomba-eletrica-0-20-psi-138v-10a-tomada-12v-para-stand-up-paddle-e-caiaque.jpg" alt="Bomba" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Bomba Elétrica 0-20 PSI (12V)</h3>
+                        <p class="product-desc">"Enche barracas infláveis e colchões sem suar a camisa."</p>
+                        <div class="btn-action">Ver Produto</div>
                     </div>
                 </article>
             </a>
 
+            <a href="https://www.mercadolivre.com.br/armadilha-mata-mosquito-repelente-recarregavel-portatil-led-uv-eletrnico-pernilongo-insetos-110v220v-ex-decor/p/MLB42200110" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Segurança</span>
+                    <div class="img-container">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_832626-MLB74775260029_022024-O.webp" alt="Mosquito" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Armadilha Mata Mosquito UV</h3>
+                        <p class="product-desc">"O alívio contra insetos. Recarregável e fácil de levar."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="https://www.mercadolivre.com.br/lampada-led-bulbo-luz-emergencia-38w-4000mah-usb-recarrega/up/MLBU1437111331" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Iluminação</span>
+                    <div class="img-container">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_908401-MLB75296836932_032024-O.webp" alt="Lâmpada LED" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Lâmpada LED 38W Recarregável</h3>
+                        <p class="product-desc">"Luz branca forte para o acampamento. Carrega via USB."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
+        </div>
+
+        <div class="category-title">
+            <i class="fa-solid fa-layer-group"></i> Materiais de Solo e Amarração
+        </div>
+        <div class="product-grid">
+            <a href="https://www.mercadolivre.com.br/corda-amarracao10mm-15-metro-poliester-nautica-carga-camping/up/MLBU599928375" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Resistente</span>
+                    <div class="img-container">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_918928-MLB50077873618_052022-O.webp" alt="Corda" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Corda Amarração 10mm (15m)</h3>
+                        <p class="product-desc">"Material náutico que não apodrece com a umidade. Indispensável."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="https://www.famosaagricola.com.br/rafia-de-solo-preta" target="_blank" class="product-link">
+                <article class="product-card">
+                    <span class="badge">Proteção Solo</span>
+                    <div class="img-container">
+                        <img src="https://famosaagricola.com.br/wp-content/uploads/2021/05/rafia-de-solo-preta.jpg" alt="Rafia" class="product-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-name">Ráfia de Solo Preta (7x8m)</h3>
+                        <p class="product-desc">"Evita sujeira no fundo da barraca e protege contra furos no piso."</p>
+                        <div class="btn-action">Ver Produto</div>
+                    </div>
+                </article>
+            </a>
         </div>
     </div>
 
